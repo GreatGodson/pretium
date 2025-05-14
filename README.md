@@ -2,11 +2,9 @@
 
 ## 📖 Overview
 
-The **Credpal App** is a Flutter application designed with **Clean Architecture** principles.
-While the app currently consists of UI designs based on a provided *
-*[Figma link](https://www.figma.com/design/KZKDiLKAnm04rPAKMx350o/Untitled?node-id=1-35&t=3rWR9PJ6Yc16OtjY-0)
-**, it is structured in a way that allows easy expansion into a fully functional commerce
-application.
+The **Pretium App** is a Flutter application designed with **Clean Architecture** principles.
+While the app currently consists of UI designs based on the existing android application *
+*[Play Store](https://play.google.com/store/apps/details?id=app.pretium.finance&hl=en)
 
 This project follows the **Domain-Layered Clean Architecture** approach, ensuring maintainability,
 scalability, and separation of concerns.
@@ -30,13 +28,27 @@ This architecture ensures:
 
 ## Screenshots
 
-## NB: The App contains animations, so screenshots might not look well aligned due to playing animations,
+## kindly follow this [link](https://drive.google.com/file/d/1y79WA23q0mOxCnUO6mRo8Yp1_tclI15o/view?usp=sharing) to see demo video of the app
 
-## kindly follow this [link](https://drive.google.com/file/d/12vRtjAjyVtMeoanIU4IMcIFcFGZtqriI/view?usp=sharing) to see demo video of the app
+|                   Splash Screen                    |                    Onboarding -1                     | 
+|:--------------------------------------------------:|:----------------------------------------------------:|  
+| <img src="assets/graphics/splash.png" width="500"> | <img src="assets/graphics/onboard1.png" width="500"> |
 
-|                    Dashboard Screen                    |                     Dashboard Page                     | 
-|:------------------------------------------------------:|:------------------------------------------------------:|  
-| <img src="assets/graphics/dashboard1.png" width="500"> | <img src="assets/graphics/dashboard2.png" width="500"> |
+|                   Onboard - 2 Page                   |                  Onboarding -2 Page                  | 
+|:----------------------------------------------------:|:----------------------------------------------------:|  
+| <img src="assets/graphics/onboard2.png" width="500"> | <img src="assets/graphics/onboard3.png" width="500"> |
+
+|                   Signup -  Page                    |                    Login  Page                    | 
+|:---------------------------------------------------:|:-------------------------------------------------:|  
+| <img src="assets/graphics/sign-up.png" width="500"> | <img src="assets/graphics/login.png" width="500"> |
+
+|                   Signup - Error Page                    |                   Login - Error Page                    | 
+|:--------------------------------------------------------:|:-------------------------------------------------------:|  
+| <img src="assets/graphics/signup-error.png" width="500"> | <img src="assets/graphics/login-error.png" width="500"> |
+
+|                   Forgot - Password Page                    |                    Splash  Page                    | 
+|:-----------------------------------------------------------:|:--------------------------------------------------:|  
+| <img src="assets/graphics/forgot-password.png" width="500"> | <img src="assets/graphics/splash.png" width="500"> |
 
 ---
 
@@ -66,8 +78,8 @@ Ensure you have the following installed:
 ### **Clone the Repository**
 
 ```sh
-git clone https://github.com/GreatGodson/credpal
-cd credpal
+git clone https://github.com/GreatGodson/pretium
+cd pretium
 ```
 
 ### **Install Dependencies**
