@@ -7,6 +7,7 @@ import 'core/framework/navigator/navigator.dart';
 import 'injectable.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
 
   runApp(

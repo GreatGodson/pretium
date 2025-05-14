@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretium/app/modules/auth/presentation/pages/login_page.dart';
@@ -21,20 +23,35 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   late PageController _pageController;
   final _currentIndex = StateProvider((ref) => 0);
+  Timer? _timer;
 
   void _onPageChanged(int index) {
     ref.read(_currentIndex.notifier).state = index;
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (ref.read(_currentIndex) < _items.length - 1) {
+        _pageController.animateToPage(ref.read(_currentIndex) + 1,
+            duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+      } else {
+        _timer?.cancel();
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    _startTimer();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _timer?.cancel();
+
     super.dispose();
   }
 
@@ -49,56 +66,72 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    "Skip",
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                      fontSize: Spacings.spacing20,
+                  InkWell(
+                    onTap: () {
+                      navigator.pushAndClearStack(
+                        page: LoginPage(),
+                      );
+                    },
+                    child: Text(
+                      "Skip",
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: Spacings.spacing20,
+                      ),
                     ),
                   ),
                 ],
               ),
               Expanded(
                 child: PageView.builder(
-                    controller: _pageController,
-                    onPageChanged: _onPageChanged,
-                    itemCount: _items.length,
-                    itemBuilder: (context, index) {
-                      final listItems = _items[index];
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: AppColors.secondary,
-                            radius: Spacings.spacing60,
-                            child: Icon(
-                              listItems.iconData,
-                              size: Spacings.spacing50,
-                              color: AppColors.primary,
+                  controller: _pageController,
+                  onPageChanged: _onPageChanged,
+                  itemCount: _items.length,
+                  itemBuilder: (context, index) {
+                    final listItems = _items[index];
+                    final isCurrent = ref.watch(_currentIndex) == index;
+
+                    return AnimatedOpacity(
+                      duration: Duration(milliseconds: 500),
+                      opacity: isCurrent ? 1.0 : 0.0,
+                      child: AnimatedSlide(
+                        offset: isCurrent ? Offset(0, 0) : Offset(0.1, 0),
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: AppColors.secondary,
+                              radius: Spacings.spacing60,
+                              child: Icon(
+                                listItems.iconData,
+                                size: Spacings.spacing50,
+                                color: AppColors.primary,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: Spacings.spacing24,
-                          ),
-                          Text(
-                            listItems.title,
-                            style: TextStyle(
-                              fontSize: Spacings.spacing30,
-                              fontWeight: FontWeight.w700,
+                            SizedBox(height: Spacings.spacing24),
+                            Text(
+                              listItems.title,
+                              style: TextStyle(
+                                fontSize: Spacings.spacing30,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: Spacings.spacing8,
-                          ),
-                          Text(
-                            listItems.description,
-                            style: TextStyle(
-                              fontSize: Spacings.spacing16,
+                            SizedBox(height: Spacings.spacing8),
+                            Text(
+                              listItems.description,
+                              style: TextStyle(
+                                fontSize: Spacings.spacing16,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                          ),
-                        ],
-                      );
-                    }),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
               OnboardingIndicator(
                 currentIndex: ref.watch(_currentIndex),
