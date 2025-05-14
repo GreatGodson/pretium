@@ -1,8 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pretium/app/modules/auth/presentation/pages/signup_page.dart';
 import 'package:pretium/app/shared/helpers/form_validator.dart';
 import 'package:pretium/app/shared/presentation/widgets/components/button_component.dart';
 import 'package:pretium/app/shared/presentation/widgets/components/textfield_component.dart';
+import 'package:pretium/core/framework/navigator/navigator.dart';
 import 'package:pretium/core/framework/theme/colors/colors.dart';
 
 import '../../../../../core/framework/theme/spacings/spacings.dart';
@@ -12,6 +15,7 @@ class LoginPage extends ConsumerWidget {
 
   final _isRememberMe = StateProvider((ref) => false);
   final _formKey = GlobalKey<FormState>();
+  final _isPasswordVisible = StateProvider((ref) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -77,11 +81,21 @@ class LoginPage extends ConsumerWidget {
                     height: Spacings.spacing24,
                   ),
                   TextFieldComponent(
+                    obscureText: !ref.watch(_isPasswordVisible),
                     hint: "Password",
                     prefix: Icon(Icons.lock_outline),
                     validator: (val) {
                       return FormValidator.isEmpty(val);
                     },
+                    suffix: InkWell(
+                      onTap: () {
+                        ref.read(_isPasswordVisible.notifier).state =
+                            !ref.read(_isPasswordVisible);
+                      },
+                      child: ref.watch(_isPasswordVisible)
+                          ? Icon(Icons.visibility)
+                          : Icon(Icons.visibility_off),
+                    ),
                   ),
                   SizedBox(
                     height: Spacings.spacing40,
@@ -141,6 +155,12 @@ class LoginPage extends ConsumerWidget {
                             color: AppColors.primary,
                             fontWeight: FontWeight.w700,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              navigator.push(
+                                page: SignupPage(),
+                              );
+                            },
                         )
                       ],
                     ),

@@ -43,7 +43,7 @@ class FormValidator {
     if (value == null || value.isEmpty) {
       return 'Required field';
     } else if (value.length < 7) {
-      return 'Password must be greater than 6 characters';
+      return 'Password must be at least 4 characters';
     }
 
     final hasUppercase = RegExp(r'[A-Z]');
