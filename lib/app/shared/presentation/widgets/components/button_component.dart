@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pretium/core/theme/colors/colors.dart';
 
-import '../../../../../core/theme/sizes/sizes.dart';
-import '../../../../../core/theme/spacings/spacings.dart';
+import '../../../../../core/framework/theme/colors/colors.dart';
+import '../../../../../core/framework/theme/sizes/sizes.dart';
+import '../../../../../core/framework/theme/spacings/spacings.dart';
 
 class ButtonComponent extends StatelessWidget {
   final bool expanded;
@@ -41,7 +41,7 @@ class ButtonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Container(
+    return Container(
       width: width ?? (expanded ? double.maxFinite : null),
       decoration: BoxDecoration(
         borderRadius: radius,
@@ -62,35 +62,34 @@ class ButtonComponent extends StatelessWidget {
           elevation: WidgetStateProperty.all(0.0),
           backgroundColor: (validator == null ? true : validator!())
               ? WidgetStateProperty.all(
-            color ?? AppColors.black,
-          )
+                  color ?? AppColors.primary,
+                )
               : WidgetStateProperty.all(
-            AppColors.black,
-          ),
+                  AppColors.black,
+                ),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
               side: BorderSide(
                 color: borderColor ?? Colors.transparent,
               ),
-              borderRadius:
-              radius ?? BorderRadius.circular(Spacings.spacing16),
+              borderRadius: radius ?? BorderRadius.circular(Spacings.spacing16),
             ),
           ),
         ),
         child: isLoading
             ? const CupertinoActivityIndicator(
-          color: Colors.white,
-        )
+                color: Colors.white,
+              )
             : Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: textColor ?? AppColors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: TextSizes.size14,
-            letterSpacing: 0.5,
-          ),
-        ),
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: textColor ?? AppColors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: TextSizes.size14,
+                  letterSpacing: 0.5,
+                ),
+              ),
       ),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pretium/core/theme/colors/colors.dart';
-import '../../../../../core/theme/spacings/spacings.dart';
+
+import '../../../../../core/framework/theme/colors/colors.dart';
+import '../../../../../core/framework/theme/spacings/spacings.dart';
 
 class TextFieldComponent extends StatefulWidget {
   final String? hint;
@@ -117,6 +118,10 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
             fontSize: Spacings.spacing14,
           ),
           decoration: InputDecoration(
+            labelText: widget.hint,
+            labelStyle: TextStyle(
+              color: Colors.black,
+            ),
             contentPadding: widget.contentPadding,
             prefixText: widget.prefixText,
             prefixIcon: widget.prefix,
@@ -132,7 +137,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
                 Spacings.spacing16,
               ),
               borderSide: BorderSide(
-                color: AppColors.black,
+                color: Colors.grey,
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -140,7 +145,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
                 Spacings.spacing16,
               ),
               borderSide: BorderSide(
-                color: AppColors.black,
+                color: Colors.grey,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
@@ -148,7 +153,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
                 Spacings.spacing16,
               ),
               borderSide: BorderSide(
-                color: AppColors.black,
+                color: Colors.red,
               ),
             ),
             errorBorder: OutlineInputBorder(
@@ -156,7 +161,7 @@ class _TextFieldComponentState extends State<TextFieldComponent> {
                 Spacings.spacing16,
               ),
               borderSide: BorderSide(
-                color: AppColors.black,
+                color: Colors.red,
               ),
             ),
             border: InputBorder.none,
