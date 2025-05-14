@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pretium/app/modules/onboarding/presentation/pages/splash_page.dart';
 import 'package:pretium/core/framework/theme/colors/colors.dart';
 
-import 'app/modules/onboarding/presentation/pages/onboarding_page.dart';
 import 'core/framework/navigator/navigator.dart';
 import 'injectable.dart';
 
@@ -31,7 +31,8 @@ class Pretium extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: OnboardingPage(),
+      home: SplashPage(),
+      // home: OnboardingPage(),
     );
   }
 }

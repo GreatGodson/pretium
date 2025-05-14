@@ -38,7 +38,7 @@ dev_dependencies:
 
 flutter_native_splash:
   image: "assets/pngs/pretium.png"
-  color: "#16645E"
+  color: "#0b6766"
 
 
 flutter:

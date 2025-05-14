@@ -23,7 +23,7 @@ class OnboardingModel {
       description: "Accept stablecoin payments hassle-free",
     ),
     OnboardingModel(
-      iconData: Icons.screen_lock_landscape,
+      iconData: Icons.receipt_long_rounded,
       title: "Pay Bills",
       description: "Pay for utility services and earn rewards",
     ),
